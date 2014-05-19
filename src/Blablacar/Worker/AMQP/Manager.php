@@ -86,7 +86,15 @@ class Manager
 
         $continue = true;
         while ($continue) {
-            $envelope = $queue->get($flags);
+            try {
+                $envelope = $queue->get($flags);
+            } catch ( \Exception $e ) {
+                $context->output(sprintf(
+                    '<info>Error queue consume <comment>%s</comment>.</info>',
+                    $e->getMessage()
+                ));
+                $envelope = false ;
+            }
 
             if (!$envelope) {
                 usleep($context->getPollInterval());
