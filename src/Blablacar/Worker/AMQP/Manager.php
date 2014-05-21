@@ -157,7 +157,7 @@ class Manager
      *
      * @param strin $name
      *
-     * @return boolean
+     * @return integer The number of deleted messages.
      */
     public function deleteQueue($name)
     {

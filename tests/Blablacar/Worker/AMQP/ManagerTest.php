@@ -61,9 +61,9 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
     public function testDeleteQueue()
     {
         $manager = new Manager(new \AMQPConnection());
-        $isDeleted = $manager->deleteQueue('blablacar_worker_delete_queue_test');
+        $deletedMessagesCount = $manager->deleteQueue('blablacar_worker_delete_queue_test');
 
-        $this->assertTrue($isDeleted);
+        $this->assertEquals(0, $deletedMessagesCount);
     }
 
     public function testPublish()
